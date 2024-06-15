@@ -8,6 +8,12 @@ public class Color {
         this.green = b2;
         this.blue = b3;
     }
+    //copy constructor
+    public Color(Color color) {
+        this.red = color.getRed();
+        this.blue = color.getBlue();
+        this.green = color.getGreen();
+    }
 
     public byte getRed() {
         return red;
@@ -36,8 +42,13 @@ public class Color {
     @Override
     public boolean equals(Object obj) {
         if(this == obj) return true;
-        if(obj == null /*|| getClass() != obj.getClass()*/) return false;
+        if(obj == null || getClass() != obj.getClass()) return false;
         Color color = (Color) obj;
         return this.getRed() == color.getRed() && this.getGreen() == color.getGreen() && this.getBlue() == color.getBlue();
+    }
+
+    @Override
+    public int hashCode() {
+        return 31*Byte.hashCode(red) + Byte.hashCode(green) +Byte.hashCode(blue);
     }
 }

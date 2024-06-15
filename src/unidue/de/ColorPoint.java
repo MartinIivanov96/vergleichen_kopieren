@@ -1,11 +1,21 @@
 package unidue.de;
 
-public class ColorPoint extends Point {
+public class ColorPoint {
+    private Point point;
     private Color color;
 
     ColorPoint(int x, int y, Color color) {
-        super(x,y);
+       this.point = new Point( x , y);
         this.color = color;
+    }
+    //copy constructor
+    public ColorPoint(ColorPoint colorPoint){
+        this.point = new Point(colorPoint.getPoint());
+        this.color = new Color(colorPoint.getColor());
+    }
+
+    public Point getPoint() {
+        return point;
     }
 
     public Color getColor() {
@@ -19,12 +29,14 @@ public class ColorPoint extends Point {
     @Override
     public boolean equals(Object obj) {
         if(this == obj) return true;
-        if(obj == null ) return false;
-        if(!super.equals(obj)) return false;
-        if( getClass() != obj.getClass()) return super.equals(obj);
-        else {
+        if(obj == null || getClass() != obj.getClass()) return false;
         ColorPoint colorPoint = (ColorPoint) obj;
-        return getColor().equals(colorPoint.getColor());
-        }
+        return getColor().equals(colorPoint.getColor()) && getPoint().equals(colorPoint.getPoint());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return 31*getPoint().hashCode() + getColor().hashCode();
     }
 }
