@@ -1,6 +1,6 @@
 package unidue.de;
 
-public class Color {
+public class Color implements Cloneable{
     private byte red, green, blue;
 
     Color(byte b1, byte b2, byte b3) {
@@ -50,5 +50,14 @@ public class Color {
     @Override
     public int hashCode() {
         return 31*Byte.hashCode(red) + Byte.hashCode(green) +Byte.hashCode(blue);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        try {
+            return (Color) super.clone();
+        } catch(CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

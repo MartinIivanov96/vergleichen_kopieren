@@ -1,7 +1,7 @@
 package unidue.de;
 
 
-public class Point {
+public class Point implements Cloneable {
     private int x,y;
 
     Point(int x,int y){
@@ -34,5 +34,10 @@ public class Point {
     @Override
     public int hashCode() {
         return 31*Integer.hashCode(getX())+Integer.hashCode(getY());
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new Point(this);
     }
 }

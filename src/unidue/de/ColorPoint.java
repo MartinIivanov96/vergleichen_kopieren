@@ -1,6 +1,6 @@
 package unidue.de;
 
-public class ColorPoint {
+public class ColorPoint implements Cloneable {
     private Point point;
     private Color color;
 
@@ -38,5 +38,14 @@ public class ColorPoint {
     @Override
     public int hashCode() {
         return 31*getPoint().hashCode() + getColor().hashCode();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        try {
+            return (ColorPoint) super.clone();
+        } catch(CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

@@ -1,6 +1,6 @@
 package unidue.de;
 
-public class CounterPoint {
+public class CounterPoint implements Cloneable {
     private Point point;
     private static int counter=0;
 
@@ -28,5 +28,14 @@ public class CounterPoint {
     @Override
     public int hashCode() {
         return 31*getPoint().hashCode() + Integer.hashCode(counter);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        try {
+            return (CounterPoint) super.clone();
+        } catch(CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
