@@ -21,7 +21,8 @@ public class CounterPoint {
     public boolean equals(Object obj) {
         if(this == obj) return true;
         if(obj == null || getClass() != obj.getClass()) return false;
-        return super.equals(obj);
+        CounterPoint point = (CounterPoint) obj;
+        return this.getPoint().equals(point.getPoint());
     }
 
     @Override
